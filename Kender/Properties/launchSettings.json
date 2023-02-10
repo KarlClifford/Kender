@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Kender (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "Kender (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
