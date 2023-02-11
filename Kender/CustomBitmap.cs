@@ -23,7 +23,7 @@ namespace Kender
             imageBytes = new byte[width * height * 4];
         }
 
-        public void SetPixel(int x, int y, CustomColour color)
+        public void setPixel(int x, int y, CustomColour color)
         {
             int offset = ((height - y - 1) * width + x) * 4;
             imageBytes[offset + 0] = color.redColour;
@@ -31,7 +31,7 @@ namespace Kender
             imageBytes[offset + 2] = color.blueColour;
         }
 
-        public byte[] GetBitmapBytes()
+        public byte[] getBitmapBytes()
         {
             const int imageHeaderSize = 54;
             byte[] bmpBytes = new byte[imageBytes.Length + imageHeaderSize];
@@ -48,15 +48,18 @@ namespace Kender
             return bmpBytes;
         }
 
+        public int getWidth() { return width; }
+        public int getHeight() { return height; }
+
         public void Save(string filename)
         {
-            byte[] bytes = GetBitmapBytes();
+            byte[] bytes = getBitmapBytes();
             File.WriteAllBytes(filename, bytes);
         }
 
         public void saveAsJPEG(string filename)
         {
-            byte[] bytes = GetBitmapBytes();
+            byte[] bytes = getBitmapBytes();
             using MemoryStream ms = new(bytes);
             using Image img = Bitmap.FromStream(ms);
             img.Save(filename);
