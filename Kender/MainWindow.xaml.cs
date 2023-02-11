@@ -35,6 +35,11 @@ namespace Kender
 
             this.InitializeComponent();
 
+            // Set default RGB slider values
+            redSlider.Value = 255;
+            greenSlider.Value = 0;
+            blueSlider.Value = 0;
+
             Render(new CustomBitmap(500, 500));
         }
 
@@ -45,11 +50,7 @@ namespace Kender
             int width = bitmap.getWidth();
             int height = bitmap.getHeight();
 
-            //TODO: Not using slider values right now, implement.
-            //Save slider values
-            //double red = redSlider.Value;
-            //double green = greenSlider.Value;
-            //double blue = blueSlider.Value;
+            
 
             // generate ray tracer image
 
@@ -98,19 +99,17 @@ namespace Kender
                     double disc = b * b - 4 * a * c;
                     if (disc > 0)
                     {
-                        //black
-                        red = (byte)255;
-                        green = (byte)255;
-                        blue = (byte)255;
+                        red = (byte)redSlider.Value;
+                        green = (byte)greenSlider.Value;
+                        blue = (byte)blueSlider.Value;
                     }
                     else 
                     {
-                        //white
                         red = (byte)0;
                         green = (byte)0;
                         blue = (byte)0;
                     }
-                    CustomColour color = new(red, green, blue);
+                    CustomColour color = new CustomColour(red, green, blue);
                     bitmap.setPixel(x, y, color);
                 }
             }
@@ -135,7 +134,7 @@ namespace Kender
             //renderImage.Source = new BitmapImage(new Uri("render.bmp"), UriKind.Relative);
             BitmapImage bitmapImage= new BitmapImage();
             bitmapImage.UriSource = new Uri(@"C:\Users\khscl\Downloads\render.bmp", UriKind.Relative);
-            //renderImage.Source = null;
+            renderImage.Source = null;
             renderImage.Source = bitmapImage;
         }
 
