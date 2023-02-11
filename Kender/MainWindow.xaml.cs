@@ -10,6 +10,7 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -33,6 +34,42 @@ namespace Kender
             this.InitializeComponent();
         }
 
-     
+        private void xAxis_SliderChanged(object sender, RangeBaseValueChangedEventArgs e)
+        {
+            //TODO: Implement slider
+            Debug.WriteLine($"X Moved: {e.NewValue}");
+        }
+
+        private void yAxis_SliderChanged(object sender, RangeBaseValueChangedEventArgs e)
+        {
+            //TODO: Implement slider
+            Debug.WriteLine($"Y Moved: {e.NewValue}");
+        }
+
+        private void zAxis_SliderChanged(object sender, RangeBaseValueChangedEventArgs e)
+        {
+            //TODO: Implement slider
+            Debug.WriteLine($"Z Moved: {e.NewValue}");
+        }
+
+        private void red_SliderChanged(object sender, RangeBaseValueChangedEventArgs e)
+        {
+            //TODO: Implement slider
+            Debug.WriteLine($"red Moved: {e.NewValue}");
+        }
+
+        private void green_SliderChanged(object sender, RangeBaseValueChangedEventArgs e)
+        {
+            //TODO: Implement slider
+            Debug.WriteLine($"green Moved: {e.NewValue}");
+        }
+
+        private void blue_SliderChanged(object sender, RangeBaseValueChangedEventArgs e)
+        {
+            //TODO: Implement slider
+            Debug.WriteLine($"blue Moved: {e.NewValue}");
+        }
+
+
     }
 }
