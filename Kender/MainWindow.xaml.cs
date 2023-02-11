@@ -34,32 +34,99 @@ namespace Kender
             ExtendsContentIntoTitleBar = true;
 
             this.InitializeComponent();
+
+            Render(new CustomBitmap(500, 500));
         }
 
-        public void render(CustomBitmap bitmap) 
+        public void Render(CustomBitmap bitmap) 
         {
 
             //get bitmap size so we can iterate and through every pixel
             int width = bitmap.getWidth();
             int height = bitmap.getHeight();
 
+            //TODO: Not using slider values right now, implement.
             //Save slider values
-            double red = redSlider.Value;
-            double green = greenSlider.Value;
-            double blue = blueSlider.Value;
+            //double red = redSlider.Value;
+            //double green = greenSlider.Value;
+            //double blue = blueSlider.Value;
 
-            //Genereate bitmap
-            for(int x = 0; x < width; x++)
+            // generate ray tracer image
+
+            // origin point
+            Vector o = new Vector(0, 0, 0);
+
+            //ray direction
+            Vector d = new Vector(0, 0, 1);
+
+            //ray center of sphere
+            Vector cs = new Vector(0, 0, 0);
+
+            //sphere radius
+            double r = 100;
+
+            //point of intersection
+            Vector p;
+
+            //we need to solve t
+            double t;
+
+            // ray sphere intersection equation
+            double a, b, c;
+
+            Vector v;
+
+
+            for (int x = 0; x < width; x++)
             {
                 for (int y = 0; y < height; y++)
                 {
-                    byte r = (byte)red;
-                    byte g = (byte)green;
-                    byte b = (byte)blue;
-                    CustomColour color = new(r, g, b);
+
+                    o.x = x - 250;
+                    o.y = y - 250;
+                    o.z = -200;
+
+                    v = o.sub(cs);
+                    a = d.dot(d);
+                    b = 2 * v.dot(d);
+                    c = v.dot(v) - r * r;
+
+                    byte red = (byte)0;
+                    byte green = (byte)0;
+                    byte blue = (byte)0;
+
+                    double disc = b * b - 4 * a * c;
+                    if (disc > 0)
+                    {
+                        //black
+                        red = (byte)255;
+                        green = (byte)255;
+                        blue = (byte)255;
+                    }
+                    else 
+                    {
+                        //white
+                        red = (byte)0;
+                        green = (byte)0;
+                        blue = (byte)0;
+                    }
+                    CustomColour color = new(red, green, blue);
                     bitmap.setPixel(x, y, color);
                 }
             }
+
+            //Genereate bitmap
+            //for(int x = 0; x < width; x++)
+            //{
+            //for (int y = 0; y < height; y++)
+            //{
+            //byte r = (byte)red;
+            //byte g = (byte)green;
+            //byte b = (byte)blue;
+            //CustomColour color = new(r, g, b);
+            //bitmap.setPixel(x, y, color);
+            //}
+            //}
 
             //Save the generated bitmap
             bitmap.Save(@"C:\Users\khscl\Downloads\render.bmp");
@@ -68,7 +135,7 @@ namespace Kender
             //renderImage.Source = new BitmapImage(new Uri("render.bmp"), UriKind.Relative);
             BitmapImage bitmapImage= new BitmapImage();
             bitmapImage.UriSource = new Uri(@"C:\Users\khscl\Downloads\render.bmp", UriKind.Relative);
-            renderImage.Source = null;
+            //renderImage.Source = null;
             renderImage.Source = bitmapImage;
         }
 
@@ -95,21 +162,21 @@ namespace Kender
         {
             //TODO: Implement slider
             Debug.WriteLine($"red Moved: {e.NewValue}");
-            render(new CustomBitmap(640, 640));
+            Render(new CustomBitmap(500, 500));
         }
 
         private void green_SliderChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
             //TODO: Implement slider
             Debug.WriteLine($"green Moved: {e.NewValue}");
-            render(new CustomBitmap(640, 640));
+            Render(new CustomBitmap(500, 500));
         }
 
         private void blue_SliderChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
             //TODO: Implement slider
             Debug.WriteLine($"blue Moved: {e.NewValue}");
-            render(new CustomBitmap(640, 640));
+            Render(new CustomBitmap(500, 500));
         }
 
 

@@ -58,7 +58,7 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <TextBlock Text="VIEWPORT" Margin="12,12,0,0" Style="{StaticResource BaseTextBlockStyle}"/>
-                <Image  x:Name="renderImage" Source="C:\Users\khscl\Downloads\render.bmp" Height="640" Width="640" Margin="12,-50,0,0"/>
+                <Image  x:Name="renderImage" Source="C:\Users\khscl\Downloads\render.bmp" Height="500" Width="500" Margin="12,-50,0,0"/>
                 <TextBlock x:Name="content" Grid.Row="1" Margin="12,12,0,0" Style="{StaticResource BodyTextBlockStyle}" />
             </Grid>
         </SplitView>
