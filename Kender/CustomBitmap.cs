@@ -26,9 +26,10 @@ namespace Kender
         public void setPixel(int x, int y, CustomColour color)
         {
             int offset = ((height - y - 1) * width + x) * 4;
-            imageBytes[offset + 0] = color.redColour;
+            //TODO: Had to swap offset of red and blue
+            imageBytes[offset + 2] = color.redColour;
             imageBytes[offset + 1] = color.greenColour;
-            imageBytes[offset + 2] = color.blueColour;
+            imageBytes[offset + 0] = color.blueColour;
         }
 
         public byte[] getBitmapBytes()
