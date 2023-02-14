@@ -67,7 +67,7 @@ namespace Kender
             double r = 100;
 
             //point of intersection
-            Vector p;
+            Vector p = new Vector(0,0,0);
 
             //we need to solve t
             double t;
@@ -76,6 +76,11 @@ namespace Kender
             double a, b, c;
 
             Vector v;
+
+            Vector Light = new Vector(250, 250, -200);
+
+            // no idea what this is for
+            double col = 0.0;
 
 
             for (int x = 0; x < width; x++)
@@ -92,40 +97,51 @@ namespace Kender
                     b = 2 * v.dot(d);
                     c = v.dot(v) - r * r;
 
-                    byte red = (byte)0;
-                    byte green = (byte)0;
-                    byte blue = (byte)0;
+                    double red;
+                    double green;
+                    double blue;
 
                     double disc = b * b - 4 * a * c;
-                    if (disc > 0)
+                    if (disc > 0) // maybe <
                     {
-                        red = (byte)redSlider.Value;
-                        green = (byte)greenSlider.Value;
-                        blue = (byte)blueSlider.Value;
+                        col = 1.0; // maybe 0.0 if ^ is <
+
+                        //red = (byte)(redSlider.Value / col); // maybe col should be first
+                        //green = (byte)(greenSlider.Value / col);
+                        //blue = (byte)(blueSlider.Value / col);
+                        red = redSlider.Value; // maybe col should be first
+                        green = (byte)(greenSlider.Value);
+                        blue = (byte)(blueSlider.Value);
                     }
                     else 
                     {
+                        col = 0.0; // maybe 1.0 if ^ is >;
+
                         red = (byte)0;
                         green = (byte)0;
                         blue = (byte)0;
                     }
-                    CustomColour color = new CustomColour(red, green, blue);
+                    t = (-b - Math.Sqrt(disc)) / (2 * a);
+                    p = o.add(d.mul(t));
+                    Vector Lv = Light.sub(p);
+                    Lv.normalise();
+                    Vector n = p.sub(cs);
+                    n.normalise();
+                    double dp=Lv.dot(n);
+                    if (dp < 0)
+                    {
+                        col = 0;
+                    }
+                    else {
+                        col = dp;
+                    }
+                    if (col > 1) {
+                        col = 1;
+                    }
+                    CustomColour color = new CustomColour((byte)(col * red), (byte)(col * green), (byte)(col * blue));
                     bitmap.setPixel(x, y, color);
                 }
-            }
-
-            //Genereate bitmap
-            //for(int x = 0; x < width; x++)
-            //{
-            //for (int y = 0; y < height; y++)
-            //{
-            //byte r = (byte)red;
-            //byte g = (byte)green;
-            //byte b = (byte)blue;
-            //CustomColour color = new(r, g, b);
-            //bitmap.setPixel(x, y, color);
-            //}
-            //}
+            }      
 
             //Save the generated bitmap
             bitmap.Save(@"C:\Users\khscl\Downloads\render.bmp");
