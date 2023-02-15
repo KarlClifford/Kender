@@ -102,24 +102,23 @@ namespace Kender
                     double blue;
 
                     double disc = b * b - 4 * a * c;
-                    if (disc > 0) // maybe <
+                    if (disc < 0) // maybe <
                     {
-                        col = 1.0; // maybe 0.0 if ^ is <
-
-                        //red = (byte)(redSlider.Value / col); // maybe col should be first
-                        //green = (byte)(greenSlider.Value / col);
-                        //blue = (byte)(blueSlider.Value / col);
-                        red = redSlider.Value; // maybe col should be first
-                        green = (byte)(greenSlider.Value);
-                        blue = (byte)(blueSlider.Value);
-                    }
-                    else 
-                    {
-                        col = 0.0; // maybe 1.0 if ^ is >;
+                        col = 0.0; // maybe 0.0 if ^ is <
 
                         red = (byte)0;
                         green = (byte)0;
                         blue = (byte)0;
+                    }
+                    else 
+                    {
+                        col = 1.0; // maybe 1.0 if ^ is >;
+
+                        
+
+                        red = redSlider.Value; // maybe col should be first
+                        green = (byte)(greenSlider.Value);
+                        blue = (byte)(blueSlider.Value);
                     }
                     t = (-b - Math.Sqrt(disc)) / (2 * a);
                     p = o.add(d.mul(t));
