@@ -35,6 +35,13 @@ namespace Kender
 
             this.InitializeComponent();
 
+            // populate listview
+            stageItems.Items.Add("bla1");
+            stageItems.Items.Add("bla2");
+            stageItems.Items.Add("bla3");
+            stageItems.Items.Add("bla4");
+
+
             // Set default RGB slider values
             redSlider.Value = 255;
             greenSlider.Value = 0;
@@ -193,6 +200,87 @@ namespace Kender
             Render(new CustomBitmap(500, 500));
         }
 
+        private void onStageManagerButtonClick(object sender, RoutedEventArgs e)
+        {
+            sceneCollectionTitle.Visibility = Visibility.Collapsed;
+            viewStageManagerButton.Visibility = Visibility.Collapsed;
+            propertiesTitle.Visibility = Visibility.Collapsed;
+            itemName.Visibility = Visibility.Collapsed;
+            itemType.Visibility = Visibility.Collapsed;
+            xAxis.Visibility = Visibility.Collapsed;
+            yAxis.Visibility = Visibility.Collapsed;
+            zAxis.Visibility = Visibility.Collapsed;
+            redSlider.Visibility = Visibility.Collapsed;
+            greenSlider.Visibility = Visibility.Collapsed;
+            blueSlider.Visibility = Visibility.Collapsed;
+            sceneObjectsTitle.Visibility = Visibility.Visible;
+            addObjectButton.Visibility = Visibility.Visible;
+            StageManager.Visibility= Visibility.Visible;
+        }
+
+        private void stageItemSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            sceneObjectsTitle.Visibility = Visibility.Collapsed;
+            addObjectButton.Visibility = Visibility.Collapsed;
+            addObjectButton.Visibility = Visibility.Collapsed;
+            StageManager.Visibility = Visibility.Collapsed;
+            sceneCollectionTitle.Visibility = Visibility.Visible;
+            itemName.Visibility = Visibility.Visible;
+            itemType.Visibility = Visibility.Visible;
+            viewStageManagerButton.Visibility = Visibility.Visible;
+            propertiesTitle.Visibility = Visibility.Visible;
+            xAxis.Visibility = Visibility.Visible;
+            yAxis.Visibility = Visibility.Visible;
+            zAxis.Visibility = Visibility.Visible;
+            redSlider.Visibility = Visibility.Visible;
+            greenSlider.Visibility = Visibility.Visible;
+            blueSlider.Visibility = Visibility.Visible;
+        }
+
+        private void showPropertiesWindow() {
+            hideStageManagerWindow();
+
+            sceneCollectionTitle.Visibility = Visibility.Visible;
+            viewStageManagerButton.Visibility = Visibility.Visible;
+            propertiesTitle.Visibility = Visibility.Visible;
+            xAxis.Visibility = Visibility.Visible;
+            yAxis.Visibility = Visibility.Visible;
+            zAxis.Visibility = Visibility.Visible;
+            redSlider.Visibility = Visibility.Visible;
+            greenSlider.Visibility = Visibility.Visible;
+            blueSlider.Visibility = Visibility.Visible;
+        }
+
+        private void hidePropertiesWindow() {
+            sceneCollectionTitle.Visibility = Visibility.Collapsed;
+            viewStageManagerButton.Visibility = Visibility.Collapsed;
+            propertiesTitle.Visibility = Visibility.Collapsed;
+            xAxis.Visibility = Visibility.Collapsed;
+            yAxis.Visibility = Visibility.Collapsed;
+            zAxis.Visibility = Visibility.Collapsed;
+            redSlider.Visibility = Visibility.Collapsed;
+            greenSlider.Visibility = Visibility.Collapsed;
+            blueSlider.Visibility = Visibility.Collapsed;
+
+            showStageManagerWindow();
+        }
+
+        private void showStageManagerWindow() {
+            hidePropertiesWindow();
+
+            sceneObjectsTitle.Visibility = Visibility.Visible;
+            addObjectButton.Visibility = Visibility.Visible;
+            addObjectButton.Visibility = Visibility.Visible;
+        }
+
+        private void hideStageManagerWindow()
+        {
+            sceneObjectsTitle.Visibility = Visibility.Collapsed;
+            addObjectButton.Visibility = Visibility.Collapsed;
+            addObjectButton.Visibility = Visibility.Collapsed;
+
+            showPropertiesWindow();
+        }
 
     }
 }

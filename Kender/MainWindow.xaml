@@ -30,28 +30,37 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <TextBlock Text="Kender" Margin="14,12,0,0" Style="{StaticResource BaseTextBlockStyle}"/>
-                    <TextBlock Text="Scene Collection" Margin="14,40,0,0" Style="{StaticResource BaseTextBlockStyle}"></TextBlock>
-                    <DropDownButton Content="Add Object" Margin="14,-450,0,0">
+                    <TextBlock Visibility="Collapsed" x:Name="sceneCollectionTitle" Text="Item Information" Margin="14,40,0,0" Style="{StaticResource BaseTextBlockStyle}"></TextBlock>
+                    <TextBlock x:Name="sceneObjectsTitle" Text="Scene Manager" Margin="14,40,0,0" Style="{StaticResource BaseTextBlockStyle}"></TextBlock>
+                    <DropDownButton x:Name="addObjectButton" Content="Add Object" Margin="14,-90,0,0">
                         <DropDownButton.Flyout>
                             <MenuFlyout Placement="Bottom">
+                                <MenuFlyoutItem Text="Light"></MenuFlyoutItem>
                                 <MenuFlyoutItem Text="Sphere"/>
                             </MenuFlyout>
                         </DropDownButton.Flyout>
                     </DropDownButton>
-                    <TextBlock Text="Properties" Margin="14,200,0,0" Style="{StaticResource BaseTextBlockStyle}"></TextBlock>
-                    <Slider x:Name="xAxis" Header="X Coordinate" Width="200" Margin="14,250,0,24" ValueChanged="xAxis_SliderChanged"/>
-                    <Slider x:Name="yAxis" Header="Y Coordinate" Width="200" Margin="14,300,0,24" ValueChanged="yAxis_SliderChanged"/>
-                    <Slider x:Name="zAxis" Header="Z Coordinate" Width="200" Margin="14,350,0,24" ValueChanged="zAxis_SliderChanged"/>
-                    <Slider x:Name="redSlider" Header="red" Width="200" Foreground="Red" Background="DarkRed"  Margin="14,450,0,24" Maximum="255" ValueChanged="red_SliderChanged"/>
-                    <Slider x:Name="greenSlider" Header="green" Width="200" Foreground="Green" Background="DarkGreen" Margin="14,500,0,24" Maximum="255" ValueChanged="green_SliderChanged"/>
-                    <Slider x:Name="blueSlider" Header="blue" Width="200" Foreground="Blue" Background="DarkBlue" Margin="14,550,0,24" Maximum="255" ValueChanged="blue_SliderChanged"/>
+                    <TextBlock Visibility="Collapsed" x:Name="itemName" Text="Name" Margin="14,65,0,0" Style="{StaticResource BaseTextBlockStyle}"></TextBlock>
+                    <TextBlock Visibility="Collapsed" x:Name="itemType" Text="Type" Margin="14,85,0,0" Style="{StaticResource BaseTextBlockStyle}"></TextBlock>
+                    <Button Visibility="Collapsed" x:Name="viewStageManagerButton" Click="onStageManagerButtonClick" Margin="14,-350,0,0">View All Items</Button>
+                    <Grid Margin="0,120,0,0">
+                        <StackPanel x:Name="StageManager">
+                            <ListView x:Name="stageItems" SelectionMode="Single" SelectionChanged="stageItemSelectionChanged"></ListView>
+                        </StackPanel>
+                    </Grid>
+                    <TextBlock Visibility="Collapsed" x:Name="propertiesTitle" Text="Properties" Margin="14,200,0,0" Style="{StaticResource BaseTextBlockStyle}"></TextBlock>
+                    <Slider Visibility="Collapsed" x:Name="xAxis" Header="X Coordinate" Width="200" Margin="14,250,0,24" ValueChanged="xAxis_SliderChanged"/>
+                    <Slider Visibility="Collapsed" x:Name="yAxis" Header="Y Coordinate" Width="200" Margin="14,300,0,24" ValueChanged="yAxis_SliderChanged"/>
+                    <Slider Visibility="Collapsed" x:Name="zAxis" Header="Z Coordinate" Width="200" Margin="14,350,0,24" ValueChanged="zAxis_SliderChanged"/>
+                    <Slider Visibility="Collapsed" x:Name="redSlider" Header="red" Width="200" Foreground="Red" Background="DarkRed"  Margin="14,450,0,24" Maximum="255" ValueChanged="red_SliderChanged"/>
+                    <Slider Visibility="Collapsed" x:Name="greenSlider" Header="green" Width="200" Foreground="Green" Background="DarkGreen" Margin="14,500,0,24" Maximum="255" ValueChanged="green_SliderChanged"/>
+                    <Slider Visibility="Collapsed" x:Name="blueSlider" Header="blue" Width="200" Foreground="Blue" Background="DarkBlue" Margin="14,550,0,24" Maximum="255" ValueChanged="blue_SliderChanged"/>
                     <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="14,24,0,24" >
                         <SymbolIcon Symbol="Setting" />
                         <TextBlock Text="Settings" Margin="24,0,0,0" VerticalAlignment="Center"/>
                     </StackPanel>
                 </Grid>
             </SplitView.Pane>
-
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
