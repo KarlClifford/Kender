@@ -30,31 +30,38 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <TextBlock Text="Kender" Margin="14,12,0,0" Style="{StaticResource BaseTextBlockStyle}"/>
-                    <TextBlock Visibility="Collapsed" x:Name="sceneCollectionTitle" Text="Item Information" Margin="14,40,0,0" Style="{StaticResource BaseTextBlockStyle}"></TextBlock>
-                    <TextBlock x:Name="sceneObjectsTitle" Text="Scene Manager" Margin="14,40,0,0" Style="{StaticResource BaseTextBlockStyle}"></TextBlock>
-                    <DropDownButton x:Name="addObjectButton" Content="Add Object" Margin="14,-90,0,0">
-                        <DropDownButton.Flyout>
-                            <MenuFlyout Placement="Bottom">
-                                <MenuFlyoutItem Text="Light"></MenuFlyoutItem>
-                                <MenuFlyoutItem Text="Sphere"/>
-                            </MenuFlyout>
-                        </DropDownButton.Flyout>
-                    </DropDownButton>
-                    <TextBlock Visibility="Collapsed" x:Name="itemName" Text="Name" Margin="14,65,0,0" Style="{StaticResource BaseTextBlockStyle}"></TextBlock>
-                    <TextBlock Visibility="Collapsed" x:Name="itemType" Text="Type" Margin="14,85,0,0" Style="{StaticResource BaseTextBlockStyle}"></TextBlock>
-                    <Button Visibility="Collapsed" x:Name="viewStageManagerButton" Click="onStageManagerButtonClick" Margin="14,-350,0,0">View All Items</Button>
-                    <Grid Margin="0,120,0,0">
-                        <StackPanel x:Name="StageManager">
-                            <ListView x:Name="stageItems" SelectionMode="Single" SelectionChanged="stageItemSelectionChanged"></ListView>
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal" Margin="14,40,0,0">
+                            <TextBlock Visibility="Collapsed" x:Name="sceneCollectionTitle" Text="Item Information" Margin="0,7,0,0" Style="{StaticResource BaseTextBlockStyle}"></TextBlock>
+                            <Button Visibility="Collapsed" x:Name="viewStageManagerButton" Click="OnStageManagerButtonClick" Margin="14,0,0,0">View All Items</Button>
                         </StackPanel>
-                    </Grid>
-                    <TextBlock Visibility="Collapsed" x:Name="propertiesTitle" Text="Properties" Margin="14,200,0,0" Style="{StaticResource BaseTextBlockStyle}"></TextBlock>
-                    <Slider Visibility="Collapsed" x:Name="xAxis" Header="X Coordinate" Width="200" Margin="14,250,0,24" ValueChanged="xAxis_SliderChanged"/>
-                    <Slider Visibility="Collapsed" x:Name="yAxis" Header="Y Coordinate" Width="200" Margin="14,300,0,24" ValueChanged="yAxis_SliderChanged"/>
-                    <Slider Visibility="Collapsed" x:Name="zAxis" Header="Z Coordinate" Width="200" Margin="14,350,0,24" ValueChanged="zAxis_SliderChanged"/>
-                    <Slider Visibility="Collapsed" x:Name="redSlider" Header="red" Width="200" Foreground="Red" Background="DarkRed"  Margin="14,450,0,24" Maximum="255" ValueChanged="red_SliderChanged"/>
-                    <Slider Visibility="Collapsed" x:Name="greenSlider" Header="green" Width="200" Foreground="Green" Background="DarkGreen" Margin="14,500,0,24" Maximum="255" ValueChanged="green_SliderChanged"/>
-                    <Slider Visibility="Collapsed" x:Name="blueSlider" Header="blue" Width="200" Foreground="Blue" Background="DarkBlue" Margin="14,550,0,24" Maximum="255" ValueChanged="blue_SliderChanged"/>
+                        <TextBlock Visibility="Collapsed" x:Name="itemName" Text="Name:" Margin="14,20,0,0" Style="{StaticResource BaseTextBlockStyle}"></TextBlock>
+                        <TextBlock Visibility="Collapsed" x:Name="itemType" Text="Type:" Margin="14,10,0,0" Style="{StaticResource BaseTextBlockStyle}"></TextBlock>
+                        <TextBlock Visibility="Collapsed" x:Name="propertiesTitle" Text="Properties" Margin="14,30,0,0" Style="{StaticResource BaseTextBlockStyle}"></TextBlock>
+                        <Slider Visibility="Collapsed" x:Name="xAxis" Header="X Coordinate" Width="200" Margin="0,20,0,0" Maximum="500" ValueChanged="XAxis_SliderChanged"/>
+                        <Slider Visibility="Collapsed" x:Name="yAxis" Header="Y Coordinate" Width="200" Margin="0,20,0,0" Maximum="500" ValueChanged="YAxis_SliderChanged"/>
+                        <Slider Visibility="Collapsed" x:Name="zAxis" Header="Z Coordinate" Width="200" Margin="0,20,0,0" Maximum="500" ValueChanged="ZAxis_SliderChanged"/>
+                        <Slider Visibility="Collapsed" x:Name="radiusSlider" Header="radius" Width="200" Margin="0,20,0,0" Maximum="500" ValueChanged="radius_SliderChanged"/>
+                        <Slider Visibility="Collapsed" x:Name="redSlider" Header="red" Width="200" Margin="0,50,0,0" Foreground="Red" Background="DarkRed" Maximum="255" ValueChanged="Red_SliderChanged"/>
+                        <Slider Visibility="Collapsed" x:Name="greenSlider" Header="green" Width="200" Margin="0,20,0,0" Foreground="Green" Background="DarkGreen" Maximum="255" ValueChanged="Green_SliderChanged"/>
+                        <Slider Visibility="Collapsed" x:Name="blueSlider" Header="blue" Width="200" Margin="0,20,0,0" Foreground="Blue" Background="DarkBlue" Maximum="255" ValueChanged="Blue_SliderChanged"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal" Margin="14,40,0,0" >
+                            <TextBlock x:Name="sceneObjectsTitle" Text="Scene Manager" VerticalAlignment="Center" Style="{StaticResource BaseTextBlockStyle}"/>
+                            <DropDownButton x:Name="addObjectButton" Content="Add Object" Margin="14,0,0,0">
+                                <DropDownButton.Flyout>
+                                    <MenuFlyout Placement="Bottom">
+                                        <MenuFlyoutItem Click="OnAddLightClick" Text="Light"></MenuFlyoutItem>
+                                        <MenuFlyoutItem Click="OnAddSphereClick" Text="Sphere"/>
+                                    </MenuFlyout>
+                                </DropDownButton.Flyout>
+                            </DropDownButton>
+                        </StackPanel>
+                        <StackPanel x:Name="StageManager">
+                            <ListView x:Name="stageItems" SelectionMode="Single" SelectionChanged="StageItemSelectionChanged" Width="350" Height="630"></ListView>
+                        </StackPanel>
+                    </StackPanel>
                     <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="14,24,0,24" >
                         <SymbolIcon Symbol="Setting" />
                         <TextBlock Text="Settings" Margin="24,0,0,0" VerticalAlignment="Center"/>
