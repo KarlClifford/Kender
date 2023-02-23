@@ -27,18 +27,5 @@ namespace Kender
         {
             (redColour, greenColour, blueColour) = (r, g, b);
         }
-
-        //public static CustomColour Random(Random rand)
-        //{
-        //    byte r = (byte)rand.Next(256);
-        //    byte g = (byte)rand.Next(256);
-        //    byte b = (byte)rand.Next(256);
-        //    return new CustomColour(r, g, b);
-        //}
-
-        //public static CustomColour Gray(byte value)
-        //{
-        //    return new CustomColour(value, value, value);
-        //}
     }
 }
