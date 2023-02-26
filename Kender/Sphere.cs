@@ -71,5 +71,62 @@ namespace Kender
             Radius = radius;
             Colour = colour;
         }
+
+        /// <summary>
+        /// Calculates ray-sphere intersection.
+        /// </summary>
+        /// <param name="o">ray origin</param>
+        /// <param name="d">ray direction</param>
+        /// <returns></returns>
+        public bool Intersect(Vector o, Vector d)
+        {
+            Vector v = new Vector(o.x - this.x, o.y - this.y, o.z - this.z);
+            double a = d.dot(d);
+            double b = 2 * (v.x * d.x + v.y * d.y + v.z * d.z);
+            double c = v.dot(v) - this.Radius * this.Radius;
+
+            double discrimenant = b * b - 4 * a * c;
+
+            return discrimenant > 0;
+        }
+
+        public double Distance()
+        {
+            return Math.Sqrt((this.x * this.x) + (this.y * this.y) + (this.z * this.z));
+        }
+
+        public CustomColour calculateShading(Vector o, Vector d, Vector Light) {
+            Vector v = new Vector(o.x - this.x, o.y - this.y, o.z - this.z);
+            double a = d.dot(d);
+            double b = 2 * (v.x * d.x + v.y * d.y + v.z * d.z);
+            double c = v.dot(v) - this.Radius * this.Radius;
+
+            double disc = b * b - 4 * a * c;
+
+            double t = (-b - Math.Sqrt(disc)) / (2 * a);
+            Vector p = o.add(d.mul(t));
+            Vector Lv = Light.sub(p);
+            Lv.normalise();
+            Vector n = p.sub(this);
+            n.normalise();
+
+            double dp = Lv.dot(n);
+            double col;
+
+            if (dp < 0)
+            {
+                col = 0;
+            }
+            else
+            {
+                col = dp;
+            }
+            if (col > 1)
+            {
+                col = 1;
+            }
+
+            return new CustomColour((byte)(col * Colour.redColour), (byte)(col * Colour.greenColour), (byte)(col * Colour.blueColour));
+        }
     }
 }
