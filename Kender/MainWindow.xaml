@@ -52,7 +52,6 @@
                             <DropDownButton x:Name="addObjectButton" Content="Add Object" Margin="14,0,0,0">
                                 <DropDownButton.Flyout>
                                     <MenuFlyout Placement="Bottom">
-                                        <MenuFlyoutItem Click="OnAddLightClick" Text="Light"></MenuFlyoutItem>
                                         <MenuFlyoutItem Click="OnAddSphereClick" Text="Sphere"/>
                                     </MenuFlyout>
                                 </DropDownButton.Flyout>
