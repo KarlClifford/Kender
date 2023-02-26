@@ -8,9 +8,9 @@ using Windows.Devices.Radios;
 namespace Kender
 {
     /// <summary>
-    /// This class represents a light object that can be rendered to the screen. It inherits from the Vector class <see cref="Vector"/>.
+    /// This class represents a camera object that can be rendered to the screen. It inherits from the Vector class <see cref="Vector"/>.
     /// </summary>
-    class Light : Vector
+    class Camera : Vector
     {
         /// <summary>
         /// The default X value.
@@ -24,30 +24,11 @@ namespace Kender
         /// The default Z value.
         /// </summary>
         private const double DEFAULT_Z_VALUE = 0;
-        /// <summary>
-        /// The default radius value.
-        /// </summary>
-        //private const double DEFAULT_RADIUS_VALUE = 100;
-        /// <summary>
-        /// The default colour.
-        /// </summary>
-        //private readonly CustomColour DEFAULT_COLOUR = new(255, 255, 255);
-
-
-        
-        /// <summary>
-        /// The radius of the sphere.
-        /// </summary>
-        //public double Radius { get; set; }
-        /// <summary>
-        /// The colour of the sphere.
-        /// </summary>
-        //public CustomColour Colour { get; set; }
 
         /// <summary>
-        /// The default Light constructor adds a new Light with default values to the scene.
+        /// The default camera constructor adds a new camera with default values to the scene.
         /// </summary>
-        public Light()
+        public Camera()
         {
             this.x = DEFAULT_X_VALUE;
             this.y = DEFAULT_Y_VALUE;
@@ -57,12 +38,12 @@ namespace Kender
         }
 
         /// <summary>
-        /// The custom Light constructor adds a new Light with custom properies to the scene.
+        /// The custom camera constructor adds a new Camera with custom properies to the scene.
         /// </summary>
         /// <param name="x">The double X value relative to the screen.</param>
         /// <param name="y">The double Y value relative to the screen.</param>
         /// <param name="z">The double Z value relative to the screen.</param>
-        public Light(double x, double y, double z)
+        public Camera(double x, double y, double z)
         {
             this.x = x;
             this.y = y;

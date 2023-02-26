@@ -38,9 +38,9 @@
                         <TextBlock Visibility="Collapsed" x:Name="itemName" Text="Name:" Margin="14,20,0,0" Style="{StaticResource BaseTextBlockStyle}"></TextBlock>
                         <TextBlock Visibility="Collapsed" x:Name="itemType" Text="Type:" Margin="14,10,0,0" Style="{StaticResource BaseTextBlockStyle}"></TextBlock>
                         <TextBlock Visibility="Collapsed" x:Name="propertiesTitle" Text="Properties" Margin="14,30,0,0" Style="{StaticResource BaseTextBlockStyle}"></TextBlock>
-                        <Slider Visibility="Collapsed" x:Name="xAxis" Header="X Coordinate" Width="200" Margin="0,20,0,0" Maximum="500" ValueChanged="XAxis_SliderChanged"/>
-                        <Slider Visibility="Collapsed" x:Name="yAxis" Header="Y Coordinate" Width="200" Margin="0,20,0,0" Maximum="500" ValueChanged="YAxis_SliderChanged"/>
-                        <Slider Visibility="Collapsed" x:Name="zAxis" Header="Z Coordinate" Width="200" Margin="0,20,0,0" Maximum="500" ValueChanged="ZAxis_SliderChanged"/>
+                        <Slider Visibility="Collapsed" x:Name="xAxis" Header="X Coordinate" Width="200" Margin="0,20,0,0" Minimum="-1000" Maximum="1000" ValueChanged="XAxis_SliderChanged"/>
+                        <Slider Visibility="Collapsed" x:Name="yAxis" Header="Y Coordinate" Width="200" Margin="0,20,0,0" Minimum="-1000" Maximum="1000" ValueChanged="YAxis_SliderChanged"/>
+                        <Slider Visibility="Collapsed" x:Name="zAxis" Header="Z Coordinate" Width="200" Margin="0,20,0,0" Minimum="-1000" Maximum="1000" ValueChanged="ZAxis_SliderChanged"/>
                         <Slider Visibility="Collapsed" x:Name="radiusSlider" Header="radius" Width="200" Margin="0,20,0,0" Maximum="500" ValueChanged="radius_SliderChanged"/>
                         <Slider Visibility="Collapsed" x:Name="redSlider" Header="red" Width="200" Margin="0,50,0,0" Foreground="Red" Background="DarkRed" Maximum="255" ValueChanged="Red_SliderChanged"/>
                         <Slider Visibility="Collapsed" x:Name="greenSlider" Header="green" Width="200" Margin="0,20,0,0" Foreground="Green" Background="DarkGreen" Maximum="255" ValueChanged="Green_SliderChanged"/>

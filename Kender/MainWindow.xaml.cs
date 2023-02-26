@@ -43,6 +43,7 @@ namespace Kender
         {
 
             // Add the default objects so we have a viewable scene when we first open the appliation.
+            SCENE_OBJECTS.Add(new Camera(0, 0, 100));
             SCENE_OBJECTS.Add(new Light(250, 250, -200));
             SCENE_OBJECTS.Add(new Sphere(0, 0, 0, 100, new CustomColour(255, 0, 0)));
             SCENE_OBJECTS.Add(new Sphere(100, 0, -200, 100, new CustomColour(255, 255, 255)));
@@ -284,7 +285,7 @@ namespace Kender
   
             // TODO: Use scene objects light source
             // Light source
-            Vector Light = new Vector(250, 250, -200);
+            Vector Light = SCENE_OBJECTS[1];
 
             // virtual camera settings
             double focalLength = 500; // distance from the camera to the image plane
@@ -299,8 +300,10 @@ namespace Kender
                     double aspectRatio = (double)width / height;
                     // Add too the px and py to move the camera.
                     double px = (2 * ((x + 0.5) / width) - 1) * Math.Tan(fov / 2 * Math.PI / 180) * aspectRatio;
+                    px += SCENE_OBJECTS[0].x / 100;
                     double py = (1 - 2 * ((y + 0.5) / height)) * Math.Tan(fov / 2 * Math.PI / 180);
-                    Vector d = new Vector(px, py, 1);
+                    py += SCENE_OBJECTS[0].y / 100;
+                    Vector d = new Vector(px, py, (SCENE_OBJECTS[0].z / 100));
                     d.normalise();
 
                     // calculate ray origin
@@ -580,19 +583,19 @@ namespace Kender
                 zAxis.Value = sphere.z;
             }
             else {
-                // Must be a light object, We currently are not storing a radius or RGB value for lights so we might as well hide radius and the RGB sliders.
+                // Must be a light or camera object, We currently are not storing a radius or RGB value for lights or camera so we might as well hide radius and the RGB sliders.
                 radiusSlider.Visibility = Visibility.Collapsed;
                 redSlider.Visibility = Visibility.Collapsed;
                 greenSlider.Visibility = Visibility.Collapsed;
                 blueSlider.Visibility = Visibility.Collapsed;
 
-                // Get the light object from the scene objects vector array and store it as a light so we can access its xyz properties.
-                Light light = (Light)SCENE_OBJECTS[stageItems.SelectedIndex];
+                // Get the object from the scene objects vector array and store it as a light so we can access its xyz properties.
+                Vector obj = SCENE_OBJECTS[stageItems.SelectedIndex];
 
                 // Update XYZ sliders.
-                xAxis.Value = light.x;
-                yAxis.Value = light.y;
-                zAxis.Value = light.z;
+                xAxis.Value = obj.x;
+                yAxis.Value = obj.y;
+                zAxis.Value = obj.z;
             }
         }
 
