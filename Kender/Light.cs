@@ -24,25 +24,6 @@ namespace Kender
         /// The default Z value.
         /// </summary>
         private const double DEFAULT_Z_VALUE = 0;
-        /// <summary>
-        /// The default radius value.
-        /// </summary>
-        //private const double DEFAULT_RADIUS_VALUE = 100;
-        /// <summary>
-        /// The default colour.
-        /// </summary>
-        //private readonly CustomColour DEFAULT_COLOUR = new(255, 255, 255);
-
-
-        
-        /// <summary>
-        /// The radius of the sphere.
-        /// </summary>
-        //public double Radius { get; set; }
-        /// <summary>
-        /// The colour of the sphere.
-        /// </summary>
-        //public CustomColour Colour { get; set; }
 
         /// <summary>
         /// The default Light constructor adds a new Light with default values to the scene.
@@ -52,8 +33,6 @@ namespace Kender
             this.x = DEFAULT_X_VALUE;
             this.y = DEFAULT_Y_VALUE;
             this.z = DEFAULT_Z_VALUE;
-            //Radius = DEFAULT_RADIUS_VALUE;
-            //Colour = DEFAULT_COLOUR;
         }
 
         /// <summary>

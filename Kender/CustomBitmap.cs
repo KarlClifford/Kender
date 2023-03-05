@@ -12,8 +12,11 @@ namespace Kender
     /// </summary>
     public class CustomBitmap
     {
+        // Width of bitmap.
         private readonly int width;
+        // Height of bitmap.
         private readonly int height;
+        // bytes of bitmap.
         private readonly byte[] imageBytes;
 
         public CustomBitmap(int width, int height)
@@ -23,15 +26,25 @@ namespace Kender
             imageBytes = new byte[width * height * 4];
         }
 
-        public void setPixel(int x, int y, CustomColour color)
+        /// <summary>
+        /// Sets a pixel to an 8-bit RGB colour. <see cref="CustomColour"/>.
+        /// </summary>
+        /// <param name="x">X Coordinate.</param>
+        /// <param name="y">Y Coordinate.</param>
+        /// <param name="colour">RGB colour to set the pixel too.</param>
+        public void setPixel(int x, int y, CustomColour colour)
         {
             int offset = ((height - y - 1) * width + x) * 4;
-            imageBytes[offset + 0] = color.blueColour;
-            imageBytes[offset + 1] = color.greenColour;
-            imageBytes[offset + 2] = color.redColour;
+            imageBytes[offset + 0] = colour.blueColour;
+            imageBytes[offset + 1] = colour.greenColour;
+            imageBytes[offset + 2] = colour.redColour;
             imageBytes[offset + 3] = 0xff;
         }
 
+        /// <summary>
+        /// Gets the stored bytes of the bitmap.
+        /// </summary>
+        /// <returns>The bytes of the bitmap.</returns>
         public byte[] getBitmapBytes()
         {
             const int imageHeaderSize = 54;
@@ -52,12 +65,20 @@ namespace Kender
         public int getWidth() { return width; }
         public int getHeight() { return height; }
 
+        /// <summary>
+        /// Exports the bitmap.
+        /// </summary>
+        /// <param name="path">Path to export to.</param>
         public void Save(string path)
         {
             byte[] bytes = getBitmapBytes();
             File.WriteAllBytes(path, bytes);
         }
 
+        /// <summary>
+        /// Exports bitmap as JPEG
+        /// </summary>
+        /// <param name="path">Path to export to.</param>
         public void saveAsJPEG(string path)
         {
             byte[] bytes = getBitmapBytes();

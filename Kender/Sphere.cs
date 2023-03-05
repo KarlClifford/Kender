@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.Devices.Radios;
 
 namespace Kender
 {
@@ -77,7 +78,7 @@ namespace Kender
         /// </summary>
         /// <param name="o">ray origin</param>
         /// <param name="d">ray direction</param>
-        /// <returns></returns>
+        /// <returns>True if the sphere has intersected the sphere at one of the two itersection points.</returns>
         public bool Intersect(Vector o, Vector d)
         {
             Vector v = new Vector(o.x - this.x, o.y - this.y, o.z - this.z);
@@ -85,16 +86,30 @@ namespace Kender
             double b = 2 * (v.x * d.x + v.y * d.y + v.z * d.z);
             double c = v.dot(v) - this.Radius * this.Radius;
 
-            double discrimenant = b * b - 4 * a * c;
+            double discriminant = b * b - 4 * a * c;
 
-            return discrimenant > 0;
+            double t1 = (-b + Math.Sqrt(discriminant)) / (2 * a);
+            double t2 = (-b - Math.Sqrt(discriminant)) / (2 * a);
+
+            return t1 > 0 || t2 > 0;
         }
 
+        /// <summary>
+        /// Calculate the distance of the sphere.
+        /// </summary>
+        /// <returns>double distance of the sphere.</returns>
         public double Distance()
         {
             return Math.Sqrt((this.x * this.x) + (this.y * this.y) + (this.z * this.z));
         }
 
+        /// <summary>
+        /// Generates the diffuse shading of the sphere.
+        /// </summary>
+        /// <param name="o">The ray origin.</param>
+        /// <param name="d">The ray direction.</param>
+        /// <param name="Light">The light source.</param>
+        /// <returns>A RGB colour with shading applied.</returns>
         public CustomColour calculateShading(Vector o, Vector d, Vector Light) {
             Vector v = new Vector(o.x - this.x, o.y - this.y, o.z - this.z);
             double a = d.dot(d);

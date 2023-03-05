@@ -33,7 +33,7 @@ namespace Kender
 
             SetDefaults();
 
-            Render(new CustomBitmap(500, 500));
+            Render(new CustomBitmap(700, 700));
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace Kender
 
             // Add the default objects so we have a viewable scene when we first open the appliation.
             SCENE_OBJECTS.Add(new Camera(0, 0, 100));
-            SCENE_OBJECTS.Add(new Light(250, 250, -200));
+            SCENE_OBJECTS.Add(new Light(250, 250, -842));
             SCENE_OBJECTS.Add(new Sphere(0, 0, 0, 100, new CustomColour(255, 0, 0)));
             SCENE_OBJECTS.Add(new Sphere(100, 0, -200, 100, new CustomColour(255, 255, 255)));
 
@@ -69,236 +69,29 @@ namespace Kender
         /// <param name="bitmap">
         /// The bitmap we will use to render this image.
         /// </param>
-        //public void Render(CustomBitmap bitmap)
-        //{
-
-        //    //get bitmap size so we can iterate and through every pixel
-        //    int width = bitmap.getWidth();
-        //    int height = bitmap.getHeight();
-
-        //    // generate ray tracer image
-
-        //    // First sphere center
-        //    Vector cs1 = new Vector(100, 0, -200);
-
-        //    // Second sphere center
-        //    Vector cs2 = new Vector(150, 0, 0);
-
-        //    // sphere radius
-        //    double r1 = 100;
-        //    double r2 = 100;
-
-        //    // First sphere point of intersection
-        //    Vector p1;
-
-        //    // Second sphere point of intersection
-        //    Vector p2;
-
-        //    //we need to solve t
-        //    double t1;
-        //    double t2;
-
-        //    // ray sphere intersection equation
-        //    double a1, b1, c1;
-        //    double a2, b2, c2;
-
-        //    Vector v;
-
-        //    // virtual camera settings
-        //    double focalLength = 500; // distance from the camera to the image plane
-        //    double fov = 60; // field of view in degrees
-
-        //    for (int x = 0; x < width; x++)
-        //    {
-        //        for (int y = 0; y < height; y++)
-        //        {
-
-        //            // calculate ray direction based on virtual camera
-        //            double aspectRatio = (double)width / height;
-        //            // Add too the px and py to move the camera.
-        //            double px = (2 * ((x + 0.5) / width) - 1) * Math.Tan(fov / 2 * Math.PI / 180) * aspectRatio;
-        //            double py = (1 - 2 * ((y + 0.5) / height)) * Math.Tan(fov / 2 * Math.PI / 180);
-        //            Vector d = new Vector(px, py, 1);
-        //            d.normalise();
-
-        //            // calculate ray origin
-        //            Vector o = new Vector(0, 0, -focalLength);
-
-        //            v = new Vector(o.x - cs1.x, o.y - cs1.y, o.z - cs1.z);
-        //            a1 = d.dot(d);
-        //            b1 = 2 * (v.x * d.x + v.y * d.y + v.z * d.z);
-        //            c1 = v.dot(v) - r1 * r1;
-
-        //            v = new Vector(o.x - cs2.x, o.y - cs2.y, o.z - cs2.z);
-        //            a2 = d.dot(d);
-        //            b2 = 2 * (v.x * d.x + v.y * d.y + v.z * d.z);
-        //            c2 = v.dot(v) - r2 * r2;
-
-        //            byte red = (byte)0;
-        //            byte green = (byte)0;
-        //            byte blue = (byte)0;
-
-        //            double disc1 = b1 * b1 - 4 * a1 * c1;
-        //            double disc2 = b2 * b2 - 4 * a2 * c2;
-
-        //            //for lighting
-        //            double dp = 0;
-        //            double col = 0;
-
-        //            // calculate which sphere is closer
-        //            double cs1Distance = Math.Sqrt((cs1.x * cs1.x) + (cs1.y * cs1.y) + (cs1.z * cs1.z));
-        //            double cs2Distance = Math.Sqrt((cs2.x * cs2.x) + (cs2.y * cs2.y) + (cs2.z * cs2.z));
-
-
-        //            // Has the ray passed through both spheres?
-        //            if (disc1 > 0 && disc2 > 0)
-        //            {
-        //                // Yes, which one is closer
-        //                if (cs1Distance > cs2Distance)
-        //                {
-        //                    // cs1 is closer
-        //                    if (disc1 > 0)
-        //                    {
-        //                        // Calculate shading
-        //                        Vector Light = new Vector(250, 250, -200);
-
-        //                        double t = (-b1 - Math.Sqrt(disc1)) / (2 * a1);
-        //                        Vector p = o.add(d.mul(t));
-        //                        Vector Lv = Light.sub(p);
-        //                        Lv.normalise();
-        //                        Vector n = p.sub(cs1);
-        //                        n.normalise();
-        //                        dp = Lv.dot(n);
-
-        //                        red = (byte)redSlider.Value;
-        //                        green = (byte)greenSlider.Value;
-        //                        blue = (byte)blueSlider.Value;
-        //                    }
-        //                }
-        //                else if (cs2Distance > cs1Distance)
-        //                {
-        //                    // cs2 is closer
-        //                    if (disc2 > 0)
-        //                    {
-
-        //                        // Calculate shading
-        //                        Vector Light = new Vector(250, 250, -200);
-
-        //                        double t = (-b2 - Math.Sqrt(disc2)) / (2 * a2);
-        //                        Vector p = o.add(d.mul(t));
-        //                        Vector Lv = Light.sub(p);
-        //                        Lv.normalise();
-        //                        Vector n = p.sub(cs2);
-        //                        n.normalise();
-        //                        dp = Lv.dot(n);
-
-        //                        red = (byte)redSlider.Value;
-        //                        green = (byte)greenSlider.Value;
-        //                        blue = (byte)blueSlider.Value;
-
-        //                        red = (byte)255;
-        //                        green = (byte)255;
-        //                        blue = (byte)255;
-        //                    }
-        //                }
-
-        //            }
-        //            // has ray passed through cs1?
-        //            else if (disc1 > 0)
-        //            {
-        //                // Calculate shading
-        //                Vector Light = new Vector(250, 250, -200);
-
-        //                double t = (-b1 - Math.Sqrt(disc1)) / (2 * a1);
-        //                Vector p = o.add(d.mul(t));
-        //                Vector Lv = Light.sub(p);
-        //                Lv.normalise();
-        //                Vector n = p.sub(cs1);
-        //                n.normalise();
-        //                dp = Lv.dot(n);
-
-        //                red = (byte)redSlider.Value;
-        //                green = (byte)greenSlider.Value;
-        //                blue = (byte)blueSlider.Value;
-        //            }
-        //            // has ray passed through cs2?
-        //            else if (disc2 > 0)
-        //            {
-
-        //                // Calculate shading
-        //                Vector Light = new Vector(250, 250, -200);
-
-        //                double t = (-b2 - Math.Sqrt(disc2)) / (2 * a2);
-        //                Vector p = o.add(d.mul(t));
-        //                Vector Lv = Light.sub(p);
-        //                Lv.normalise();
-        //                Vector n = p.sub(cs2);
-        //                n.normalise();
-        //                dp = Lv.dot(n);
-
-        //                red = (byte)redSlider.Value;
-        //                green = (byte)greenSlider.Value;
-        //                blue = (byte)blueSlider.Value;
-
-        //                red = (byte)255;
-        //                green = (byte)255;
-        //                blue = (byte)255;
-        //            }
-
-
-
-
-        //            if (dp < 0)
-        //            {
-        //                col = 0;
-        //            }
-        //            else
-        //            {
-        //                col = dp;
-        //            }
-        //            if (col > 1)
-        //            {
-        //                col = 1;
-        //            }
-
-        //            CustomColour color = new CustomColour((byte)(col * red), (byte)(col * green), (byte)(col * blue));
-        //            //CustomColour color = new CustomColour((byte)(red), (byte)(green), (byte)(blue));
-        //            bitmap.setPixel(x, y, color);
-        //        }
-        //    }
-
-        //    //Save the generated bitmap
-        //    bitmap.Save(@"C:\Users\khscl\Downloads\render.bmp");
-
-
-        //    UpdateViewport();
-        //}
-
         public void Render(CustomBitmap bitmap)
         {
 
-            //get bitmap size so we can iterate and through every pixel
+            // Get bitmap size so we can iterate and through every pixel.
             int width = bitmap.getWidth();
             int height = bitmap.getHeight();
-
-            // generate ray tracer image
-  
-            // TODO: Use scene objects light source
-            // Light source
+ 
+            // Get the light source.
             Vector Light = SCENE_OBJECTS[1];
 
-            // virtual camera settings
-            double focalLength = 500; // distance from the camera to the image plane
-            double fov = 60; // field of view in degrees
+            // Virtual camera settings.
+            double focalLength = 500; // Distance from the camera to the image plane.
+            double fov = 60; // Field of view in degrees.
 
+            // Go through every pixel in the bitmap and set its colour.
             for (int x = 0; x < width; x++)
             {
                 for (int y = 0; y < height; y++)
                 {
 
-                    // calculate ray direction based on virtual camera
+                    // Calculate ray direction based on virtual camera.
                     double aspectRatio = (double)width / height;
-                    // Add too the px and py to move the camera.
+                    // Add a user defined value to px and py to pan the virtual camera.
                     double px = (2 * ((x + 0.5) / width) - 1) * Math.Tan(fov / 2 * Math.PI / 180) * aspectRatio;
                     px += SCENE_OBJECTS[0].x / 100;
                     double py = (1 - 2 * ((y + 0.5) / height)) * Math.Tan(fov / 2 * Math.PI / 180);
@@ -306,21 +99,19 @@ namespace Kender
                     Vector d = new Vector(px, py, (SCENE_OBJECTS[0].z / 100));
                     d.normalise();
 
-                    // calculate ray origin
+                    // Calculate the ray origin for ray intersection.
                     Vector o = new Vector(0, 0, -focalLength);
 
+                    // Store the RGB value for the background colour.
                     byte red = (byte)0;
                     byte green = (byte)0;
                     byte blue = (byte)0;
 
-                    //double disc1 = b1 * b1 - 4 * a1 * c1;
-                    //double disc2 = b2 * b2 - 4 * a2 * c2;
-
-                    //for lighting
+                    // Store the dp and col for shading.
                     double dp = 0;
                     double col = 0;
 
-                    // Final colour
+                    // This is the colour we will set our pixel to.
                     CustomColour colour;
 
 
@@ -331,6 +122,7 @@ namespace Kender
                         if (obj.GetType() == typeof(Sphere)) {
                             Sphere sphere = (Sphere)obj;
 
+                            // The ray has intersected this sphere so store it in the array.
                             if (sphere.Intersect(o, d)) 
                             {
                                 sphereList.Add(sphere);
@@ -338,7 +130,7 @@ namespace Kender
                         }
                     });
 
-                    // Now we have all the spheres that have intersected the ray, find the closest sphere
+                    // Now we have all the spheres that have intersected the ray, find the closest sphere.
                     if (sphereList.Count > 0)
                     {
                         Sphere closestSphere = sphereList[0];
@@ -347,6 +139,7 @@ namespace Kender
                         {
                             if (sphere.Distance() > closestSphere.Distance())
                             {
+                                // Store the closest sphere, we will generate the shading for this shphere.
                                 closestSphere = sphere;
                             }
                         });
@@ -355,19 +148,19 @@ namespace Kender
                     }
                     else 
                     {
-                        // TODO: make a variable for background colour
-                        // Use the background colour
                         colour = new CustomColour((byte)(col * red), (byte)(col * green), (byte)(col * blue));
                     }
 
+                    // Set the pixel to the generate colour value.
                     bitmap.setPixel(x, y, colour);
                 }
             }
 
-            //Save the generated bitmap
-            bitmap.Save(@"C:\Users\khscl\Downloads\render.bmp");
+            // Save the generated bitmap.
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            bitmap.Save(@$"{path}\render.bmp");
 
-
+            // Refresh the app with the new bitmap.
             UpdateViewport();
         }
 
@@ -378,7 +171,8 @@ namespace Kender
         {
             // Get the new image.
             BitmapImage bitmapImage = new BitmapImage();
-            bitmapImage.UriSource = new Uri(@"C:\Users\khscl\Downloads\render.bmp", UriKind.Relative);
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            bitmapImage.UriSource = new Uri(@$"{path}\render.bmp", UriKind.Relative);
             // Remove the current image from the screen.
             renderImage.Source = null;
             // Set the new image.
@@ -395,7 +189,7 @@ namespace Kender
             
             Debug.WriteLine($"X Moved: {e.NewValue}");
             SCENE_OBJECTS[stageItems.SelectedIndex].x = (float)e.NewValue;
-            Render(new CustomBitmap(500, 500));
+            Render(new CustomBitmap(700, 700));
         }
 
         /// <summary>
@@ -408,7 +202,7 @@ namespace Kender
             
             Debug.WriteLine($"Y Moved: {e.NewValue}");
             SCENE_OBJECTS[stageItems.SelectedIndex].y = (float)e.NewValue;
-            Render(new CustomBitmap(500, 500));
+            Render(new CustomBitmap(700, 700));
         }
 
         /// <summary>
@@ -420,7 +214,7 @@ namespace Kender
         {
             Debug.WriteLine($"Z Moved: {e.NewValue}");
             SCENE_OBJECTS[stageItems.SelectedIndex].z = (float)e.NewValue;
-            Render(new CustomBitmap(500, 500));
+            Render(new CustomBitmap(700, 700));
         }
 
         /// <summary>
@@ -437,7 +231,7 @@ namespace Kender
             sphere.Radius = (float)e.NewValue;
             // Replace the old sphere with the new sphere.
             SCENE_OBJECTS[stageItems.SelectedIndex] = sphere;
-            Render(new CustomBitmap(500, 500));
+            Render(new CustomBitmap(700, 700));
         }
 
         /// <summary>
@@ -454,7 +248,7 @@ namespace Kender
             sphere.Colour = new CustomColour((byte)e.NewValue, sphere.Colour.greenColour, sphere.Colour.blueColour);
             // Replace the old sphere with the new sphere.
             SCENE_OBJECTS[stageItems.SelectedIndex] = sphere;
-            Render(new CustomBitmap(500, 500));
+            Render(new CustomBitmap(700, 700));
         }
 
         /// <summary>
@@ -471,7 +265,7 @@ namespace Kender
             sphere.Colour = new CustomColour(sphere.Colour.redColour, (byte)e.NewValue, sphere.Colour.blueColour);
             // Replace the old sphere with the new sphere.
             SCENE_OBJECTS[stageItems.SelectedIndex] = sphere;
-            Render(new CustomBitmap(500, 500));
+            Render(new CustomBitmap(700, 700));
         }
 
         /// <summary>
@@ -488,7 +282,7 @@ namespace Kender
             sphere.Colour = new CustomColour(sphere.Colour.redColour, sphere.Colour.greenColour, (byte)e.NewValue);
             // Replace the old sphere with the new sphere.
             SCENE_OBJECTS[stageItems.SelectedIndex] = sphere;
-            Render(new CustomBitmap(500, 500));
+            Render(new CustomBitmap(700, 700));
         }
 
         /// <summary>

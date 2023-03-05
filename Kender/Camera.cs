@@ -33,8 +33,6 @@ namespace Kender
             this.x = DEFAULT_X_VALUE;
             this.y = DEFAULT_Y_VALUE;
             this.z = DEFAULT_Z_VALUE;
-            //Radius = DEFAULT_RADIUS_VALUE;
-            //Colour = DEFAULT_COLOUR;
         }
 
         /// <summary>
